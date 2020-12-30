@@ -5,7 +5,7 @@ Prereqs:
   + `npm i -g firebase`
   + `firebase init emulators` (only install auth and firestore, use ddefault ports)
 
-Seeding (optional):
+Seeding/Running Firebase Emulators:
 ```bash
 nx run seed-scripts:seed --watch=false 
 ```
