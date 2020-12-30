@@ -1,0 +1,6 @@
+<h2>Add a New Aeon</h2>
+
+<form (ngSubmit)="submit(aeonForm.form.value)">
+  <aeon-form #aeonForm></aeon-form>
+  <button type="submit" [disabled]="!aeonForm.form.valid">Submit</button>
+</form>

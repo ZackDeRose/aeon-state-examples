@@ -33,11 +33,18 @@
     "@angular/common": "^11.0.0",
     "@angular/compiler": "^11.0.0",
     "@angular/core": "^11.0.0",
+    "@angular/fire": "^6.1.4",
     "@angular/forms": "^11.0.0",
     "@angular/platform-browser": "^11.0.0",
     "@angular/platform-browser-dynamic": "^11.0.0",
     "@angular/router": "^11.0.0",
+    "@ngrx/effects": "^10.1.2",
+    "@ngrx/entity": "^10.1.2",
+    "@ngrx/store": "^10.1.2",
+    "@ngrx/store-devtools": "^10.1.2",
     "@nrwl/angular": "11.0.20",
+    "firebase": "^8.2.1",
+    "firebase-admin": "^9.4.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "^0.10.2"
@@ -73,6 +80,7 @@
     "ts-jest": "26.4.0",
     "ts-node": "~9.1.1",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.3"
+    "typescript": "~4.0.3",
+    "@nrwl/node": "11.0.20"
   }
 }

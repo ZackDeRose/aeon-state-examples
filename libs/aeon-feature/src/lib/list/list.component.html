@@ -1,0 +1,14 @@
+<div><a routerLink="add">Add New Aeon</a></div>
+<h2>All Aeons</h2>
+<ng-container *ngIf="aeons$ | async as aeons">
+  <ul>
+    <li *ngFor="let aeon of aeons">
+      <a [routerLink]="aeon.name"> {{ aeon.name }}</a>
+      [<ng-container *ngFor="let type of aeon.types; let i = index"
+        >{{ !!i ? ' | ' : '' }}{{ type }}</ng-container
+      >]
+      <a [routerLink]="['update', aeon.name]">Update</a>
+      <button (click)="delete(aeon)">Delete</button>
+    </li>
+  </ul>
+</ng-container>

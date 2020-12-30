@@ -1,0 +1,11 @@
+<ng-container *ngIf="aeon$ | async as aeon">
+  <h2>{{ aeon.name }}</h2>
+  <h3>
+    [<ng-container *ngFor="let type of aeon.types; let i = index"
+      >{{ !!i ? ' | ' : '' }}{{ type }}</ng-container
+    >]
+  </h3>
+  <div>Attack: {{ aeon.attack }}</div>
+  <div>Defense: {{ aeon.defense }}</div>
+  <div>Health: {{ aeon.health }}</div>
+</ng-container>

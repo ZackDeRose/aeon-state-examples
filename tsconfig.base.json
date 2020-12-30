@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@aeon-state-examples/aeon-utils": ["libs/aeon-utils/src/index.ts"],
+      "@aeon-state-examples/aeon-feature": ["libs/aeon-feature/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

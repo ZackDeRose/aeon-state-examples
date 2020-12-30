@@ -83,6 +83,17 @@
             "jestConfig": "apps/aeons/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "seed-and-serve-with-emulators": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "firebase emulators:start --project=aeons",
+              "nx run seed-scripts:seed --watch=false",
+              "nx serve aeons"
+            ],
+            "parallel": false
+          }
         }
       }
     },
@@ -108,6 +119,110 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/aeons-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "aeon-utils": {
+      "root": "libs/aeon-utils",
+      "sourceRoot": "libs/aeon-utils/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/aeon-utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/aeon-utils"],
+          "options": {
+            "jestConfig": "libs/aeon-utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "seed-scripts": {
+      "root": "apps/seed-scripts",
+      "sourceRoot": "apps/seed-scripts/src",
+      "projectType": "application",
+      "prefix": "seed-scripts",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/seed-scripts",
+            "main": "apps/seed-scripts/src/main.ts",
+            "tsConfig": "apps/seed-scripts/tsconfig.app.json",
+            "assets": ["apps/seed-scripts/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/seed-scripts/src/environments/environment.ts",
+                  "with": "apps/seed-scripts/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "seed-scripts:build"
+          }
+        },
+        "seed": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "seed-scripts:build",
+            "watch": false
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/seed-scripts/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/seed-scripts"],
+          "options": {
+            "jestConfig": "apps/seed-scripts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "aeon-feature": {
+      "projectType": "library",
+      "root": "libs/aeon-feature",
+      "sourceRoot": "libs/aeon-feature/src",
+      "prefix": "aeon",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/aeon-feature/src/**/*.ts",
+              "libs/aeon-feature/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/aeon-feature"],
+          "options": {
+            "jestConfig": "libs/aeon-feature/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

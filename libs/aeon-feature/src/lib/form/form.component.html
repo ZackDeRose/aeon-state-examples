@@ -1,0 +1,25 @@
+<!-- <div>
+  <label for="name">Name:</label>
+  <input id="name" [formControl]="form.get('name')" />
+</div>
+
+<div>
+  <label for="type1">Type 1:</label>
+  <input id="type1" [formControl]="form.get('type1')" />
+</div>
+
+<div>
+  <label for="type2">Type 2:</label>
+  <input id="type2" [formControl]="form.get('type2')" />
+</div> -->
+
+<ng-container *ngIf="form">
+  <div
+    *ngFor="
+      let stat of ['name', 'type1', 'type2', 'attack', 'defense', 'health']
+    "
+  >
+    <label [for]="stat">{{ stat | titlecase }}: </label>
+    <input [id]="stat" [formControl]="form.get(stat)" />
+  </div>
+</ng-container>
