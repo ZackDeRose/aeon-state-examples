@@ -1,3 +1,20 @@
+# To Run
+
+Prereqs:
++ install firebase cli and emulators globally
+  + `npm i -g firebase`
+  + `firebase init emulators` (only install auth and firestore, use ddefault ports)
+
+Seeding (optional):
+```bash
+nx run seed-scripts:seed --watch=false 
+```
+
+Running:
+```bash
+nx serve
+```
+
 # AeonStateExamples
 
 This project was generated using [Nx](https://nx.dev).
