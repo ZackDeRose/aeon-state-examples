@@ -3,7 +3,6 @@ import * as admin from 'firebase-admin';
 import { spawn } from 'child_process';
 
 admin.initializeApp({ projectId: 'aeons' });
-console.log(process.env);
 
 async function createUser(email: string): Promise<admin.auth.UserRecord> {
   try {
@@ -25,10 +24,11 @@ async function createAeon(aeon: Aeon) {
 }
 
 async function seed() {
-  console.log('in main');
+  console.log('Seeding users...');
   const zack = await createUser('zack@derose.com');
-  console.log(zack);
   const beeman = await createUser('bram@beeman.com');
+  console.log('Users seeded.');
+  console.log('Seeding aeons...');
   const testAeon: Aeon = {
     name: 'test',
     types: ['fire', 'holy'],
@@ -38,16 +38,22 @@ async function seed() {
     ownerId: zack.uid,
   };
   await createAeon(testAeon);
+  console.log('Aeons seeded.');
+  console.log('');
+  console.log('All set!!');
+  console.log('Run `nx serve` in another terminal to serve the client.');
+  console.log('Cancel this process at any time to stop emulators.');
 }
 
 function main() {
+  console.log('Starting emulators...');
   const emulatorsStart = spawn('firebase', [
     'emulators:start',
     '--project=aeons',
   ]);
   emulatorsStart.stdout.on('data', (data) => {
-    // console.log(`stdout: ${data}`);
     if (data.includes('Emulator Hub running at')) {
+      console.log('Emulators running.');
       seed();
     }
   });
